@@ -15,10 +15,7 @@ export default function Header() {
           <li className="books">
             <Link to="/books">Books</Link>
           </li>
-          <li>
-          <input type="text" placeholder="search..."/>
-
-          </li>
+         
         </ul>
       </div>
     );
