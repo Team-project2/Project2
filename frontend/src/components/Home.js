@@ -21,8 +21,19 @@ export default function Home() {
     return (
         <div className="bodyHome">
         <div className="bk">
+<<<<<<< HEAD
+
+        
+
+        </div>
+        <h1 className="Hometitle">  <br/> WHAT BEST TO WATCH ? <br/> 🎈 KIDS MOVIES 🎈 </h1>
+
+=======
         </div>
         <h1 className="Hometitle">  <br/> WHAT TO WATCH ? <br/> 🎈 KIDS MOVIES 🎈 </h1>
+>>>>>>> 6f16e98aeb5633e68ba35f9f63cabf0d200f2878
         </div>
+       
+  
     )
 }
