@@ -10,15 +10,13 @@ export default function Header() {
             <Link to="/"><i class="fas fa-home"></i></Link>
           </li>
           <li className="about">
-            <Link to="/about">about</Link>
+            <Link to="/about">Rating us</Link>
           </li>
           <li className="books">
-            <Link to="/books">Books</Link>
+            <Link to="/books">Movies
+            </Link>
           </li>
-          <li>
-          <input type="text" placeholder="search..."/>
-
-          </li>
+        
         </ul>
       </div>
     );

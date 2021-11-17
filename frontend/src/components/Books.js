@@ -56,21 +56,19 @@ export default function Books() {
     const [filtered ,setFilterd] = useState([]);
     const [result , setResult] = useState("");
 
+    
+
     useEffect(()=>{
             const fetchData = async ()=> {
-                    try{
-                        const res = await axios.get('http://localhost:3000/Books');
-                        setData(res.data);
+                        const res = await axios.get('http://localhost:5000/Books');
                         setFilterd(res.data);
-                    }catch(err){
-                        throw new Error(err);
-                    }
-                     };
+                 
+                  };
                   fetchData(); 
         },[]);
 
         useEffect(()=> {
-            const results = filtered.filter(res=> res.name.toLowerCase().includes(result)
+            const results = filtered.filter(res=>  result && res.name.toLowerCase().includes(result)
 
             ); 
             setData(results)
@@ -88,7 +86,7 @@ export default function Books() {
 
 
     useEffect(async() => {
-       const result = await axios.get("http://localhost:3000/Books");
+       const result = await axios.get("http://localhost:5000/Books");
        setBooksList(result.data);
     },[])
 
@@ -100,21 +98,30 @@ export default function Books() {
     const goTopage =(id) => {
       history.push(`/book/${id}`)
     }
+
+    
     
    
     return (
         <div className="BooksTitle">
-          <h1 className="Title">Books List : </h1>
+          <h1 className="Title">CARTOON MOVIES : </h1>
+          
+          <div>
+          <i class="fas fa-search"></i>
           <input 
             type="text"
             placeholder="search here .."
             value={result}
             onChange={onChange}
         />
+        </div>
         {data.map((Books,i)=> (   
-                <ul key={i}>
-                <li>{Books.name}</li>
-                </ul>)
+                <div key={i} className="searchBox">
+                <h3>{Books.name}</h3>
+                <hr/>
+                <img  className="searchImg" src={Books.imgUrl} onClick={()=>{goTopage(Books.id)}} />
+
+                </div>)
             )
         }
      <div className="mainContainer">
@@ -122,11 +129,17 @@ export default function Books() {
             return (
               <div key={i} className="booksImg">
                 <h1>{Books.name}</h1> <hr/>
-               <img className="imgSize" src={Books.imgUrl}/>
-                  <h4>Writer: {Books.writer}</h4>
+               <img className="imgSize"  onClick={()=>{goTopage(Books.id)}} src={Books.imgUrl}/>
+               <br/>
+                  {/* <h4>Writer: {Books.writer}</h4> */}
+
 <button className="btn button1" onClick={()=>{goTopage(Books.id)}}>Show details</button>
+<br/>
+
+
             
 <div>
+  
        
     </div>
               </div>
@@ -134,7 +147,6 @@ export default function Books() {
             );
         })}
  
-
       </div> </div>
     );
 }
