@@ -4,30 +4,29 @@ import { useHistory } from "react-router-dom";
 export default function Books() {
     const [booksList, setBooksList] = useState([])
     const [booksPage, setBookPage] = useState()
-    const history = useHistory();
     const [data ,setData] = useState([]);
     const [filtered ,setFilterd] = useState([]);
     const [result , setResult] = useState("");
+    const history = useHistory();
 
     
-    useEffect(()=>{
-            const fetchData = async ()=> {
+    useEffect(()=>{ //search from this
+            const axiosData = async ()=> {
                     
                         const res = await axios.get('http://localhost:5000/Books');
                         setFilterd(res.data);
-                  
-                  fetchData();
-        },[]})
+            };
+            axiosData();
+        },[])
         useEffect(()=> {
-            const results = filtered.filter(res=>  result && res.name.toLowerCase().includes(result)
+            const results = filtered.filter(res =>  result && res.name.toLowerCase().includes(result)
 
             ); 
             setData(results)
         } ,[result])
-        //console.log(data)
-      const onChange =(e)=> {
-            setResult(e.target.value);
-        }
+      const onChange =(elem)=> {
+            setResult(elem.target.value);
+        } //to this 
     useEffect(async() => {
        const result = await axios.get("http://localhost:5000/Books");
        setBooksList(result.data);
@@ -65,15 +64,15 @@ export default function Books() {
             )
         }
      <div className="mainContainer">
-          {booksList.map((Books,i)=>{
+          {booksList.map((movies,i)=>{
             return (
               <div key={i} className="booksImg">
-                <h1>{Books.name}</h1> <hr/>
-               <img className="imgSize"  onClick={()=>{goTopage(Books.id)}} src={Books.imgUrl}/>
+                <h1>{movies.name}</h1> <hr/>
+               <img className="imgSize"  onClick={()=>{goTopage(movies.id)}} src={movies.imgUrl}/>
                <br/>
                   {/* <h4>Writer: {Books.writer}</h4> */}
 
-<button className="btn button1" onClick={()=>{goTopage(Books.id)}}>Show details</button>
+<button className="btn button1" onClick={()=>{goTopage(movies.id)}}>Show details</button>
 <br/>
 
 
