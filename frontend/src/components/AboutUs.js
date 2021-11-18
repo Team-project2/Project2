@@ -7,12 +7,9 @@ const colors = {
   grey: "#a9a9a9"
   
 };
-export default function AboutUs(props) {
+export default function AboutUs() {
 
-  console.log(props);
-  const myName = props.myName;
-  const newArr = props.arr
-  console.log(newArr);
+ 
 
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState("");
@@ -39,10 +36,8 @@ export default function AboutUs(props) {
               onClick={() => handleClick(i + 1)}
               onMouseOver={() => handleMouseOver(i + 1)}
               onMouseLeave={handleMouseLeave}
-              color={(hoverValue || currentValue) >i ? colors.orange : colors.grey}
-           
-            />
-          )
+              color={(hoverValue || currentValue) >i ? colors.orange : colors.grey}/>
+        )
         })}
         <br/>
         <img className="RatingUs" src="https://www.pinclipart.com/picdir/big/0-2861_kids-transparent-clip-art-students-clipart-transparent-background.png" width="40%"/>
